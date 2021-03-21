@@ -1,6 +1,6 @@
-import { OnDestroy, OnInit } from "./hooks";
+import * as Hooks from "./hooks";
 
-export class Component implements OnInit, OnDestroy {
+export class Component implements Hooks.OnInit, Hooks.OnDestroy {
   constructor(public title: string) {}
 
   public ngOnInit() {
