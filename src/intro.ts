@@ -1,13 +1,13 @@
 /** adnotacje typów **/
-function sayHello(person: string): string {
+function sayHello7(person: string): string {
   return `Hello ${person}`;
 }
 
 let user = "Adrian";
 
-sayHello(user);
+sayHello7(user);
 
-sayHello("Ala");
+sayHello7("Ala");
 
 function isLong(value: string): boolean {
   return value.length > 1000;
