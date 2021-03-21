@@ -52,6 +52,14 @@ enum Color {
 let color1: Color = Color.Green;
 let colo2 = Color.Red;
 
+/** const enum **/
+const enum Color2 {
+  Red = "rgba(255, 0, 0, 0.5)",
+  Green = "#00ff00",
+  Blue = "#0000ff",
+}
+const color3 = Color2.Blue;
+
 /** any **/
 let notSure: any = 4;
 notSure = "maybe a string instead";
@@ -67,16 +75,15 @@ if (typeof u1 === "string") {
   }
 }
 
-function print(args: string[]): void {
+function print2(args: string[]): void {
   console.log(...args);
 }
 
-print(["a", "b"]);
+print2(["a", "b"]);
 
 /** null **/
 let n1: null = null;
 n1 = null;
-
 
 /** undefined **/
 let undef1: undefined = undefined;
@@ -84,9 +91,7 @@ let undef1: undefined = undefined;
 /** never **/
 
 function infiniteLoop(): never {
-  while(true) {
-
-  }
+  while (true) {}
 }
 
 function error(message: string): never {
@@ -95,3 +100,57 @@ function error(message: string): never {
 
 /** object **/
 const obj1: object = {};
+
+/** asercja typów **/
+
+let someValue: any;
+
+someValue = "Hello!";
+
+const len1 = (<string>someValue).length;
+const len2 = (someValue as string).length;
+
+let x2: boolean | string;
+
+function randomValue() {
+  return Math.random() > 0.5 ? "hello" : true;
+}
+
+x2 = randomValue();
+
+if (typeof x2 === "string") {
+  x2.split(" ");
+}
+
+/** interfejsy **/
+
+interface Guest {
+  firstName: string;
+  lastName: string;
+  getFullName1(): string;
+  getFullName2?: () => string
+  age?: number;
+}
+
+let person1: Guest = {
+  firstName: "Adrian",
+  lastName: "Juszczak",
+  getFullName1(): string {
+    return this.firstName + " " + this.lastName;
+  },
+  age: 10,
+};
+
+function sayHeloGuest(guest: Guest) {
+  return `Hello ${guest.getFullName1()}`;
+}
+
+sayHeloGuest(person1);
+
+sayHeloGuest({
+  firstName: "John",
+  lastName: "Doe",
+  getFullName1() {
+    return "JD";
+  },
+});
