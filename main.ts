@@ -161,10 +161,13 @@ class Person {
   // public firstName: string;
   // private lastName: string;
   protected fullName: string;
+  public readonly age = 30;
+  public static index: number = 0;
 
   /* skrócony zapis */
   constructor(public firstName: string, private lastName: string) {
     this.fullName = `${this.firstName} ${this.lastName}`;
+    Person.index++;
   }
 
   /* standardowy zapis:
@@ -180,9 +183,46 @@ class Person {
   }
 }
 
-const p1 = new Person('John', 'Doe');
+console.log(Person.index);
+const p1 = new Person("John", "Doe");
+p1.getLastName();
 
-p1.getLastName()
+/** implementacja interfajsów **/
 
+interface OnInit {
+  ngOnInit(): void;
+}
 
-console.log(p1);
+interface OnDestroy {
+  ngOnDestroy(): void;
+}
+
+interface OnChanges {
+  ngOnChanges(changes: any): void;
+}
+
+class Component implements OnInit, OnDestroy {
+  constructor(public title: string) {}
+
+  public ngOnInit() {
+    console.log("Init");
+  }
+
+  public ngOnDestroy() {
+    console.log("Destroy");
+  }
+}
+
+/** dziedziczenie **/
+
+class EditorComponent extends Component implements OnChanges {
+  constructor(public title: string, public format: string) {
+    super(title);
+  }
+
+  public ngOnChanges(changes: any) {
+    console.log(changes);
+  }
+}
+
+const ec1 = new EditorComponent('Edit', 'JSON');
