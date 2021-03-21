@@ -128,7 +128,7 @@ interface Guest {
   firstName: string;
   lastName: string;
   getFullName1(): string;
-  getFullName2?: () => string
+  getFullName2?: () => string;
   age?: number;
 }
 
@@ -154,3 +154,35 @@ sayHeloGuest({
     return "JD";
   },
 });
+
+/** classes **/
+
+class Person {
+  // public firstName: string;
+  // private lastName: string;
+  protected fullName: string;
+
+  /* skrócony zapis */
+  constructor(public firstName: string, private lastName: string) {
+    this.fullName = `${this.firstName} ${this.lastName}`;
+  }
+
+  /* standardowy zapis:
+  constructor(firstName: string, lastName: string) {
+    // this.firstName = firstName;
+    // this.lastName = lastName;
+    this.fullName = `${this.firstName} ${this.lastName}`;
+  }
+  */
+
+  public getLastName() {
+    return this.lastName;
+  }
+}
+
+const p1 = new Person('John', 'Doe');
+
+p1.getLastName()
+
+
+console.log(p1);
